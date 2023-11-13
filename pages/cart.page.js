@@ -1,16 +1,55 @@
 const { Page } = require("./page");
 
-const profileUsername = '[ng-bind="::$ctrl.profile.username"]';
-const editProfileSettingsBtn = 'a[ui-sref="app.settings"][ng-show="$ctrl.isUser"]';
+const cartItems = ".cart_item";
+const cartQTY = ".cart_quantity";
+const itemName = ".inventory_item_name";
+const itemDesc = ".inventory_item_desc";
+const removeBtn = 'button[data-test="remove-sauce-labs-backpack"]';
+const shoppingCartBadge = ".shopping_cart_badge";
+const checkoutBtn = 'button[data-test="checkout"]';
 
 class CartPage extends Page {
-  checkProfileUsername(username) {
-    this.getElement(profileUsername).should("eq", username);
+  openCartUrl() {
+    this.openUrl("/cart.html");
   }
 
-  clickEditProfileSettingsBtn() {
-    this.clickElement(editProfileSettingsBtn);
+  checkAddToCartItems() {
+    this.getElement(cartItems).should("be.visible");
   }
+
+  checkCartQTY() {
+    this.getElement(cartQTY).should("eq", "1");
+  }
+
+  checkRemoveFromCartItems() {
+    this.getElement(cartItems).should("not.exist");
+  }
+
+  checkItemName() {
+    this.getElement(itemName).should("eq", "Sauce Labs Backpack");
+  }
+
+  checkItemDesc() {
+    this.getElement(itemDesc).should("contain.text", "carry.allTheThings()");
+  }
+
+  checkItemPrice() {
+    this.getElement(itemPrice).should("contain.text", "$29.99");
+  }
+
+  clickRemoveBtn() {
+    this.clickElement(removeBtn);
+  }
+
+  checkRemoveFromCartBadge() {
+    this.getElement(shoppingCartBadge).should("not.exist");
+  }
+
+  clickCheckoutBtn() {
+    this.clickElement(checkoutBtn);
+  }
+
+  
 }
 
 export default CartPage;

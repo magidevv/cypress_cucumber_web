@@ -1,7 +1,7 @@
 class Page {
 
   openUrl(url) {
-    cy.visit(url || "/");
+    cy.visit(url || "/", { failOnStatusCode: false });
   }
 
   getElement(element) {

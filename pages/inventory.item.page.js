@@ -1,34 +1,30 @@
 const { Page } = require("./page");
 
-const loginLink = 'nav [ui-sref="app.login"]';
-const registrationLink = 'nav [ui-sref="app.register"]';
-const profileSectionLink = 'a[ui-sref="app.profile.main"]';
-const settingsLink = 'a[ui-sref="app.settings"]';
+const addToCartBtn = 'button[data-test="add-to-cart-sauce-labs-backpack"]';
+const shoppingCartBadge = '.shopping_cart_badge';
+const shoppingCartLink = '.shopping_cart_link';
+const removeBtn = 'button[data-test="remove-sauce-labs-backpack"]';
 
-class CheckoutItemPage extends Page {
-  openMainUrl() {
-    this.openUrl("");
+class InventoryItemPage extends Page {
+  clickAddToCartBtn() {
+    this.clickElement(addToCartBtn);
   }
 
-  clickLoginLink() {
-    this.clickElement(loginLink);
+  checkAddToCartBadge() {
+    this.getElement(shoppingCartBadge).should("eq", "1");
   }
 
-  clickRegistrationLink() {
-    this.clickElement(registrationLink);
+  clickShoppingCartLink() {
+    this.clickElement(shoppingCartLink);
   }
 
-  checkProfileSectionUsername(username) {
-    this.getElement(profileSectionLink).should("eq", username);
+  clickRemoveBtn() {
+    this.clickElement(removeBtn);
   }
 
-  clickProfileSectionLink() {
-    this.clickElement(profileSectionLink);
-  }
-
-  clickSettingsLink() {
-    this.clickElement(settingsLink);
+  checkRemoveFromCartBadge() {
+    this.getElement(shoppingCartBadge).should("not.exist");
   }
 }
 
-export default CheckoutItemPage;
+export default InventoryItemPage;
