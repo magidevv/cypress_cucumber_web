@@ -1,35 +1,41 @@
 # Project Repository Summary
 
-This ReadMe provides detailed information about the project repository, including its summary, requirements, installation steps, launch instructions, and generating reports using Cypress Cloud.
+This ReadMe provides detailed information about the project repository, including its summary, requirements, installation steps, launch instructions, and generating reports.
 
-## Repository Structure
+# Project ReadMe
 
-The project repository includes the following directories and files:
+This ReadMe provides comprehensive information about the project repository, including its summary, requirements, installation steps, launching instructions, and progress on steps to create a report.
 
-- `.github`: Configuration files for GitHub actions.
+## Summary of Repository
+
+The project repository is organized into the following directories and files:
+
+- `.github`: GitHub-related files, potentially containing workflows and actions.
 - `cypress`:
-  - `downloads`: Cypress downloaded files.
-  - `e2e`: End-to-end test scripts.
-  - `fixtures`
-  - `pages`: Cypress test page objects.
-  - `support`: Custom Cypress commands and utilities.
-- `.env.example`: Environment variables configuration.
-- `.gitignore`: List of files and directories to be ignored by Git.
-- `package.json`: Project-specific Node.js package configuration.
+  - `e2e (features)`: Cucumber feature files specifying scenarios.
+  - `fixtures`: Test data and fixtures for Cypress tests.
+  - `helper`: Custom Cypress helper functions.
+  - `pages`: Cypress page objects.
+  - `support (step_definitions)`: Step definitions for Cucumber scenarios.
+- `.env.example`: Example environment variables configuration.
+- `.gitignore`: Specifies files and directories to be ignored by Git.
+- `package-lock.json`: Lock file for Node.js dependencies.
+- `package.json`: Node.js package configuration for the project.
 - `cypress.config.js`: Configuration file for Cypress.
 
 ## Requirements
 
-To work with this project, ensure that you meet the following system requirements:
+Ensure your system meets the following requirements to run the project successfully:
 
-- Operating System: Windows 10 and above (64-bit only).
-- Node.js: Version 18.x and Node.js 20.x and above.
-- For running Cypress locally, any modern web development-capable machine is suitable.
-- When running Cypress in a CI environment, ensure the following resources:
-  - Minimum of 2 CPUs.
-  - An additional CPU if video recording is enabled.
-  - An additional CPU for each external process you run outside of Cypress, such as frontend and backend
-  - Minimum 4GB of memory; consider using 8GB+ for longer test runs.
+- **Operating System**: Windows 10 and above (64-bit only).
+- **Node.js**: Version 18.x and Node.js 20.x and above.
+- **Local Development**:
+  - Capable machine for modern web development.
+- **CI Environment**:
+  - Minimum 2 CPUs for Cypress.
+  - Additional CPU if video recording is enabled.
+  - Extra CPU per external process (frontend/backend app servers, databases, infrastructure).
+  - Minimum 4GB of memory; use 8GB+ for longer test runs.
 
 ## Steps to Install
 
@@ -37,7 +43,7 @@ Follow these steps to install the project from the GitHub repository and connect
 
 1. Clone the project repository from GitHub:
    ```bash
-   git clone https://github.com/magidevv/cypress_web.git
+   git clone https://github.com/magidevv/cypress_cucumber_web.git
    ```
 
 2. Change your working directory to the project folder:
@@ -50,55 +56,40 @@ Follow these steps to install the project from the GitHub repository and connect
    npm install
    ```
 
-4. Set Environment Variables:
-   - Create a copy of .env.example as .env.
-   - Fill in the necessary environment variables required for the project.
-
 ## Steps to Launch
 
-This project provides several scripts to run Cypress tests:
+To run various scripts included in the project, use the following NPM scripts defined in your `package.json`:
 
-- **test:all**: Run Cypress tests in headless mode.
+- **test:all**: Run all Cypress tests.
    ```bash
-   npx run test:all
+   npm run test:all
    ```
 
-- **test:all:headed**: Run Cypress tests in headed (GUI) mode.
+- **test:all:headed**: Run all Cypress tests in headed (GUI) mode.
    ```bash
-   npx run test:all:headed
+   npm run test:all:headed
    ```
 
-- **test:login**: Run login tests using Cypress.
+- **test:login**: Run login-related tests using Cypress.
    ```bash
-   npx run test:login
+   npm run test:login
    ```
 
-- **test:registration**: Run registration tests using Cypress.
+- **test:cart-management**: Run cart management tests using Cypress.
    ```bash
-   npx run test:registration
+   npm run test:cart-management
    ```
 
-- **test:profile-settings**: Run profile settings tests using Cypress.
+- **test:product-filtering**: Run product filtering tests using Cypress.
    ```bash
-   npx run test:profile-settings
+   npm run test:product-filtering
    ```
 
-- **report:create**: Run tests in Cypress and record the results using the provided Cypress key for Cypress Cloud.
+- **test:order-checkout**: Run order checkout tests using Cypress.
    ```bash
-   npx run report:create
+   npm run test:order-checkout
    ```
 
-## Steps to Create a Report (Using Cypress Cloud)
+## Steps to Creating the Report (In Progress)
 
-To generate reports using Cypress Cloud, follow these steps:
-
-1. Make sure you have a Cypress Cloud account and access to your project.
-
-2. Update your `.env` file with the appropriate Cypress Cloud key.
-
-3. Run the "report:create" script:
-   ```bash
-   npx run report:create
-   ```
-
-The report will be generated in Cypress Cloud, allowing you to view and analyze test results.
+Work on this section is in progress and will be updated soon. Please check back for more information on generating reports.
