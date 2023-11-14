@@ -1,27 +1,11 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import LoginPage from "../../pages/login.page.js";
 import InventoryItemPage from "../../pages/inventory.item.page.js";
 import InventoryPage from "../../pages/inventory.page.js";
 import CartPage from "../../pages/cart.page.js";
 
-const validUsername = Cypress.env("USER_LOGIN");
-const validPassword = Cypress.env("USER_PASSWORD");
-
-const loginPage = new LoginPage();
 const inventoryItemPage = new InventoryItemPage();
 const inventoryPage = new InventoryPage();
 const cartPage = new CartPage();
-
-Given("the user is logged in", () => {
-  loginPage.openLoginUrl();
-  loginPage.fillUsernameField(validUsername);
-  loginPage.fillPasswordField(validPassword);
-  loginPage.clickLoginBtn();
-});
-
-Given("the user is on the Inventory Page", () => {
-  cy.url().should("include", "inventory");
-});
 
 Given("the user is on the Inventory Item Page", () => {
   inventoryPage.clickFirstInventoryItem();

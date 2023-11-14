@@ -3,7 +3,7 @@ const { Page } = require("./page");
 const firstNameField = 'input[data-test="firstName"]';
 const lastNameField = 'input[data-test="lastName"]';
 const postalCodeField = 'input[data-test="postalCode"]';
-const continueBtn = 'button[data-test="continue"]';
+const continueBtn = '[data-test="continue"]';
 const infoErrorMsgs = '[data-test="error"]';
 
 class CheckoutYourInfoPage extends Page {
@@ -11,10 +11,19 @@ class CheckoutYourInfoPage extends Page {
   static invalidLastName_error = "Error: Last Name is invalid";
   static invalidPostalCode_error = "Error: Zip/Postal Code is invalid";
 
-  fillCheckoutForm(firstName, lastName, postalCode) {
+  fillFirstNameField(firstName) {
     this.fillElement(firstNameField, firstName);
+  }
+
+  fillLastNameField(lastName) {
     this.fillElement(lastNameField, lastName);
+  }
+
+  fillPostalCodeField(postalCode) {
     this.fillElement(postalCodeField, postalCode);
+  }
+
+  clickContinueBtn() {
     this.clickElement(continueBtn);
   }
 

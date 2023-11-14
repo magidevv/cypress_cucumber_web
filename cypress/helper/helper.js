@@ -13,6 +13,14 @@ class Helper {
     return faker.internet.password();
   }
 
+  static generateRandomValidFirstName() {
+    return faker.person.firstName();
+  }
+
+  static generateRandomValidLastName() {
+    return faker.person.lastName();
+  }
+
   static generateRandomInvalidUsername() {
     return faker.string.numeric(5);
   }

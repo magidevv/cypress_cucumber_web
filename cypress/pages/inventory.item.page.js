@@ -11,7 +11,7 @@ class InventoryItemPage extends Page {
   }
 
   checkAddToCartBadge() {
-    this.getElement(shoppingCartBadge).should("eq", "1");
+    this.getElement(shoppingCartBadge).should("contain.text", "1");
   }
 
   clickShoppingCartLink() {

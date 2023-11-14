@@ -4,6 +4,7 @@ const cartItems = ".cart_item";
 const cartQTY = ".cart_quantity";
 const itemName = ".inventory_item_name";
 const itemDesc = ".inventory_item_desc";
+const itemPrice = ".inventory_item_price";
 const removeBtn = 'button[data-test="remove-sauce-labs-backpack"]';
 const shoppingCartBadge = ".shopping_cart_badge";
 const checkoutBtn = 'button[data-test="checkout"]';
@@ -18,7 +19,7 @@ class CartPage extends Page {
   }
 
   checkCartQTY() {
-    this.getElement(cartQTY).should("eq", "1");
+    this.getElement(cartQTY).should("contain.text", "1");
   }
 
   checkRemoveFromCartItems() {
@@ -26,7 +27,7 @@ class CartPage extends Page {
   }
 
   checkItemName() {
-    this.getElement(itemName).should("eq", "Sauce Labs Backpack");
+    this.getElement(itemName).should("contain.text", "Sauce Labs Backpack");
   }
 
   checkItemDesc() {
@@ -34,7 +35,7 @@ class CartPage extends Page {
   }
 
   checkItemPrice() {
-    this.getElement(itemPrice).should("contain.text", "$29.99");
+    this.getElement(itemPrice).should("contain.text", "29.99");
   }
 
   clickRemoveBtn() {

@@ -1,32 +1,34 @@
-import { defineConfig } from "cypress";
-import createBundler from "@bahmutov/cypress-esbuild-preprocessor";
-import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-preprocessor";
-import { createEsbuildPlugin } from "@badeball/cypress-cucumber-preprocessor/esbuild";
+const { defineConfig } = require("cypress");
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const {
+  addCucumberPreprocessorPlugin,
+} = require("@badeball/cypress-cucumber-preprocessor");
+const esbuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild");
+const dotenv = require("dotenv");
+dotenv.config({ path: `${__dirname}/.env` });
+
+const { USER_LOGIN, USER_PASSWORD } = process.env;
 
 module.exports = defineConfig({
   e2e: {
-    specPattern: "**/*.feature",
-    async setupNodeEvents(on, config) {
-      // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
-      await addCucumberPreprocessorPlugin(on, config);
-
-      on(
-        "file:preprocessor",
-        createBundler({
-          plugins: [createEsbuildPlugin(config)],
-        })
-      );
-
-      // Make sure to return the config object as it might have been modified by the plugin.
-      return config;
-    },
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    specPattern: "cypress/e2e/features/*.feature",
     baseUrl: `${process.env.ENV}`,
     env: {
       USER_LOGIN,
-      USER_PASSWORD,
+      USER_PASSWORD
+    },
+    chromeWebSecurity: false,
+
+    async setupNodeEvents(on, config) {
+      await addCucumberPreprocessorPlugin(on, config);
+      const preprocessor = esbuildPlugin.default || esbuildPlugin;
+      on(
+        "file:preprocessor",
+        createBundler({
+          plugins: [preprocessor(config)],
+        })
+      );
+      return config;
     },
   },
 });

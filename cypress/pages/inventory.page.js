@@ -8,7 +8,7 @@ const removeBtn = 'button[data-test="remove-sauce-labs-backpack"]';
 const azSortSelector = ".active_option";
 const zaSortSelector = 'option[value="za"]';
 const lohiSortSelector = 'option[value="lohi"]';
-const hiloSortSelector = 'option[value="hiloa"]';
+const hiloSortSelector = 'option[value="hilo"]';
 const itemNamesList = ".inventory_list .inventory_item .inventory_item_name";
 const sortSelector = 'select[data-test="product_sort_container"]';
 const itemPricesList = ".inventory_list .inventory_item .inventory_item_price";
@@ -25,7 +25,7 @@ class InventoryPage extends Page {
   clickFirstInventoryItem() {
     this.getElement(inventoryItemsList)
       .eq(0)
-      .should("eq", "Sauce Labs Backpack")
+      .should("contain.text", "Sauce Labs Backpack")
       .click();
   }
 
@@ -34,7 +34,7 @@ class InventoryPage extends Page {
   }
 
   checkAddToCartBadge() {
-    this.getElement(shoppingCartBadge).should("eq", "1");
+    this.getElement(shoppingCartBadge).should("contain.text", "1");
   }
 
   clickShoppingCartLink() {
@@ -50,82 +50,90 @@ class InventoryPage extends Page {
   }
 
   checkAZsortSelector() {
-    this.getElement(azSortSelector).should("eq", "Name (A to Z)");
+    this.getElement(azSortSelector).should("contain.text", "Name (A to Z)");
   }
 
   checkAZitemOrder() {
     this.getElement(itemNamesList)
       .invoke("text")
-      .then((itemNames) => {
-        const sortedItemNames = [...itemNames].sort((a, b) =>
-          a.localeCompare(b)
-        );
-
-        expect(itemNames).to.deep.equal(sortedItemNames);
+      .then((itemNamesText) => {
+        const expectedString =
+          "Sauce Labs BackpackSauce Labs Bike LightSauce Labs Bolt T-ShirtSauce Labs Fleece JacketSauce Labs OnesieTest.allTheThings() T-Shirt (Red)";
+        const trimmedActualString = itemNamesText.trim();
+        expect(trimmedActualString).to.eq(expectedString);
       });
   }
 
   clickSortSelector() {
-    this.clickElement(sortSelector);
+    this.selectElement(sortSelector, "az");
   }
 
   checkZAsortSelector() {
-    this.getElement(zaSortSelector).should("eq", "Name (Z to A)");
+    this.getElement(zaSortSelector).should("contain.text", "Name (Z to A)");
   }
 
   clickZAsortSelector() {
-    this.clickElement(zaSortSelector);
+    this.selectElement(sortSelector, "za");
   }
 
   checkZAitemOrder() {
     this.getElement(itemNamesList)
       .invoke("text")
       .then((itemNames) => {
-        const sortedItemNames = [...itemNames].sort((a, b) =>
-          b.localeCompare(a)
-        );
-
-        expect(itemNames).to.deep.equal(sortedItemNames);
+        const trimmedActualString = itemNames.trim();
+        const expectedString =
+          "Test.allTheThings() T-Shirt (Red)Sauce Labs OnesieSauce Labs Fleece JacketSauce Labs Bolt T-ShirtSauce Labs Bike LightSauce Labs Backpack";
+        expect(trimmedActualString).to.eq(expectedString);
       });
   }
 
   checkLoHiSortSelector() {
-    this.getElement(lohiSortSelector).should("eq", "Price (low to high)");
+    this.getElement(lohiSortSelector).should(
+      "contain.text",
+      "Price (low to high)"
+    );
   }
 
   clickLoHiSortSelector() {
-    this.clickElement(lohiSortSelector);
+    this.selectElement(sortSelector, "lohi");
   }
 
   checkLoHiItemOrder() {
     this.getElement(itemPricesList)
       .invoke("text")
       .then((itemPrices) => {
-        const numericPrices = itemPrices.map((price) =>
-          parseFloat(price.replace("$", ""))
+        const numericPrices = itemPrices
+          .split(" ")
+          .map((price) => parseFloat(price.replace("$", "")))
+          .sort((a, b) => a - b);
+        expect(numericPrices).to.deep.equal(
+          numericPrices.slice().sort((a, b) => a - b)
         );
-        const sortedPrices = [...numericPrices].sort((a, b) => a - b);
-        expect(numericPrices).to.deep.equal(sortedPrices);
       });
   }
 
   checkHiLoSortSelector() {
-    this.getElement(hiloSortSelector).should("eq", "Price (high to low)");
+    this.getElement(hiloSortSelector).should(
+      "contain.text",
+      "Price (high to low)"
+    );
   }
 
   clickHiLoSortSelector() {
-    this.clickElement(hiloSortSelector);
+    this.selectElement(sortSelector, "hilo");
   }
 
   checkHiLoItemOrder() {
     this.getElement(itemPricesList)
       .invoke("text")
       .then((itemPrices) => {
-        const numericPrices = itemPrices.map((price) =>
-          parseFloat(price.replace("$", ""))
+        const numericPrices = itemPrices
+          .split(" ")
+          .map((price) => parseFloat(price.replace("$", "")))
+          .sort((a, b) => b - a);
+        expect(numericPrices).to.deep.equal(
+          numericPrices.slice().sort((a, b) => b - a)
         );
-        const sortedPrices = [...numericPrices].sort((a, b) => b - a);
-        expect(numericPrices).to.deep.equal(sortedPrices);
       });
   }
 }

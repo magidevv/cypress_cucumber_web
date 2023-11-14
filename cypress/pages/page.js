@@ -12,6 +12,10 @@ class Page {
     this.getElement(element).click();
   }
 
+  selectElement(element, option) {
+    this.getElement(element).select(option);
+  }
+
   fillElement(element, data) {
     this.getElement(element).type(data);
   }
