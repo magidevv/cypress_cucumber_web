@@ -6,10 +6,10 @@
  "scripts": {
   "test:all": "npx cypress run",
   "test:all:headed": "npx cypress run --headed",
-  "test:login": "npx cypress run --spec 'cypress/integration/login.feature'",
-  "test:cart-management": "npx cypress run --spec 'cypress/integration/cart.management.feature'",
-  "test:product-filtering": "npx cypress run --spec 'cypress/integration/product.filtering.feature'",
-  "test:order-checkout": "npx cypress run --spec 'cypress/integration/order.checkout.feature'"
+  "test:login": "npx cypress run --spec 'cypress/e2e/features/login.feature'",
+  "test:cart-management": "npx cypress run --spec 'cypress/e2e/features/cart.management.feature'",
+  "test:product-filtering": "npx cypress run --spec 'cypress/e2e/features/product.filtering.feature'",
+  "test:order-checkout": "npx cypress run --spec 'cypress/e2e/features/order.checkout.feature'"
 },
   "keywords": [],
   "author": "",
