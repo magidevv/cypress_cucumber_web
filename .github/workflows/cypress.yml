@@ -33,11 +33,11 @@ jobs:
         run: |
           git add cypress/reports/html
           git commit -m "Add Cypress HTML report"
-          git push origin gh-pages
+          git push origin main
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: cypress/reports/html
-          publish_branch: gh-pages
+          publish_branch: main
