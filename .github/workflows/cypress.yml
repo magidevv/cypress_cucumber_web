@@ -34,11 +34,11 @@ jobs:
         run: |
           npx cypress run || true
 
-      - name: Push Report
-        run: |
-          git add cypress/reports/html
-          git commit -m "Add Cypress HTML report"
-          git push origin main
+      # - name: Push Report
+      #   run: |
+      #     git add cypress/reports/html
+      #     git commit -m "Add Cypress HTML report"
+      #     git push origin main
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
