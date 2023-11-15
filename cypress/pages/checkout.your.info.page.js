@@ -7,10 +7,6 @@ const continueBtn = '[data-test="continue"]';
 const infoErrorMsgs = '[data-test="error"]';
 
 class CheckoutYourInfoPage extends Page {
-  static invalidFirstName_error = "Error: First Name is invalid";
-  static invalidLastName_error = "Error: Last Name is invalid";
-  static invalidPostalCode_error = "Error: Zip/Postal Code is invalid";
-
   fillFirstNameField(firstName) {
     this.fillElement(firstNameField, firstName);
   }

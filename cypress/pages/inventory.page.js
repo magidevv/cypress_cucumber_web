@@ -1,6 +1,5 @@
 const { Page } = require("./page");
 
-const inventoryItemsList = ".inventory_list .inventory_item";
 const addToCartBtn = 'button[data-test="add-to-cart-sauce-labs-backpack"]';
 const shoppingCartBadge = ".shopping_cart_badge";
 const shoppingCartLink = ".shopping_cart_link";
@@ -19,11 +18,11 @@ class InventoryPage extends Page {
   }
 
   checkInventoryItems() {
-    this.getElement(inventoryItemsList).should("have.length", 6);
+    this.getElement(itemNamesList).should("have.length", 6);
   }
 
   clickFirstInventoryItem() {
-    this.getElement(inventoryItemsList)
+    this.getElement(itemNamesList)
       .eq(0)
       .should("contain.text", "Sauce Labs Backpack")
       .click();

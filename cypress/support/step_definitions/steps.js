@@ -3,6 +3,7 @@ import LoginPage from "../../pages/login.page.js";
 import InventoryItemPage from "../../pages/inventory.item.page.js";
 import CheckoutYourInfoPage from "../../pages/checkout.your.info.page.js";
 import CartPage from "../../pages/cart.page.js";
+import CheckoutOverviewPage from "../../pages/checkout.overview.page.js";
 import Helper from "../../helper/helper.js";
 
 const invalidRandomUsername = Helper.generateRandomInvalidUsername();
@@ -22,6 +23,7 @@ const loginPage = new LoginPage();
 const inventoryItemPage = new InventoryItemPage();
 const checkoutYourInfoPage = new CheckoutYourInfoPage();
 const cartPage = new CartPage();
+const checkoutOverviewPage = new CheckoutOverviewPage();
 
 Given("the user is logged in", () => {
   loginPage.openLoginUrl();
@@ -45,6 +47,8 @@ When(/^(?:the user )?clicks the "([^"]*)" button$/, (button) => {
     checkoutYourInfoPage.clickContinueBtn();
   } else if (button === "Checkout") {
     cartPage.clickCheckoutBtn();
+  } else if (button === "Finish") {
+    checkoutOverviewPage.clickFinishBtn();
   }
 });
 
@@ -80,3 +84,11 @@ When(
     }
   }
 );
+
+Then("the {string} Page is displayed", (page) => {
+  if (page === "Checkout: Overview") {
+    cy.url().should("include", "checkout-step-two");
+  } else if (page === "Checkout: Complete") {
+    cy.url().should("include", "checkout-complete");
+  }
+});
