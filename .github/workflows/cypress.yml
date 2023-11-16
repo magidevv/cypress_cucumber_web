@@ -16,6 +16,11 @@ jobs:
       USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
 
     steps:
+      - name: Set Git user identity
+        run: |
+          git config --global user.email "anna.berejna@gmail.com"
+          git config --global user.name "Anna"
+
       - name: Checkout code
         uses: actions/checkout@v4
 
