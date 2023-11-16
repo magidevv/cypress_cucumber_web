@@ -1,0 +1,35 @@
+{
+  "name": "cypress_cucumber_web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:all": "npx cypress run",
+    "test:mobile": "npx cypress run --config-file mobile-config.js",
+    "test:tablet": "npx cypress run --config-file tablet-config.js",
+    "test:all:headed": "npx cypress run --headed",
+    "test:all:mobile:headed": "npx cypress run --config-file mobile-config.js --headed",
+    "test:all:tablet:headed": "npx cypress run --config-file tablet-config.js --headed",
+    "test:login": "npx cypress run --spec cypress/e2e/features/login.feature",
+    "test:cart-management": "npx cypress run --spec cypress/e2e/features/cart.management.feature",
+    "test:product-filtering": "npx cypress run --spec cypress/e2e/features/product.filtering.feature",
+    "test:order-checkout": "npx cypress run --spec cypress/e2e/features/order.checkout.feature",
+    "report:open": "start cypress/reports/html/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@faker-js/faker": "^8.2.0",
+    "babel-loader": "^9.1.3",
+    "cypress": "^13.5.0",
+    "cypress-mochawesome-reporter": "^3.6.1"
+  },
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^19.1.0",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "dotenv": "^16.3.1"
+  }
+}
