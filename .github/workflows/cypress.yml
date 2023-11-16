@@ -36,6 +36,7 @@ jobs:
 
       - name: Push Report
         run: |
+          git checkout gh-pages
           git add cypress/reports/html
           git commit -m "Add Cypress HTML report"
           git push origin gh-pages
