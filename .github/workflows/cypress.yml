@@ -28,15 +28,15 @@ jobs:
         run: |
           npx cypress run || true
 
-      - name: Push Report
-        run: |
-          git checkout report-page
-          git add cypress/reports/html
-          git commit -m "Add Cypress HTML report"
-          git push origin report-page
+      - name: Upload Cypress Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-reports
+          path: cypress/reports/html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: cypress/reports/html
+          publish_branch: report-page
