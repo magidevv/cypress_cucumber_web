@@ -58,49 +58,49 @@ To run various scripts included in the project, use the following NPM scripts de
 
 - **test:all**: Run all Cypress tests.
    ```bash
-   npx run test:all
+   npm run test:all
    ```
 - **test:mobile**: Run Cypress tests with mobile configuration.
    ```bash
-   npx run test:mobile
+   npm run test:mobile
    ```
 - **test:tablet**: Run Cypress tests with tablet configuration.
    ```bash
-   npx run test:tablet
+   npm run test:tablet
    ```
 - **test:all:headed**: Run all Cypress tests in headed (GUI) mode.
    ```bash
-   npx run test:all:headed
+   npm run test:all:headed
    ```
 - **test:all:mobile:headed**: Run Cypress tests with mobile configuration in headed mode.
    ```bash
-   npx run test:all:mobile:headed
+   npm run test:all:mobile:headed
    ```
 - **test:all:tablet:headed**: Run Cypress tests with tablet configuration in headed mode.
    ```bash
-   npx run test:all:tablet:headed
+   npm run test:all:tablet:headed
    ```
 - **test:login**: Run login-related tests using Cypress.
    ```bash
-   npx run test:all:login
+   npm run test:all:login
    ```
 - **test:cart-management**: Run cart management tests using Cypress.
    ```bash
-   npx run test:all:cart-management
+   npm run test:all:cart-management
    ```
 - **test:product-filtering**: Run product filtering tests using Cypress.
    ```bash
-   npx run test:all:product-filtering
+   npm run test:all:product-filtering
    ```
 - **test:order-checkout**: Run order checkout tests using Cypress.
    ```bash
-   npx run test:all:order-checkout
+   npm run test:all:order-checkout
    ```
 - **report:open**: Open the generated Cypress HTML report.
    ```bash
-   npx run report:open
+   npm run report:open
    ```
 
 ## Steps to Creating the Report
 
-The project includes a GitHub Actions workflow that automatically generates and pushes Cypress HTML reports to the `main` branch. The reports are then deployed to GitHub Pages for easy access.
+The project includes a GitHub Actions workflow that automatically generates and pushes Cypress HTML reports to the `report-page` branch. The reports are then deployed to GitHub Pages for easy access.
